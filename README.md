@@ -30,12 +30,16 @@ Download and extract the dataset in `./AirWritingModule/dataset`, type command `
 In order to train Text-Recognition Module for single digit recognition, just type command `cd ./TextRecognitionModule/MNIST` and run `digitmodel.py`. Downloading [MNIST dataset](http://yann.lecun.com/exdb/mnist/) and training will be started automatically.
 
 #### English Word Recognition
-In order to train Text-Recognition Module for English word recognition, first download IAHEW-UCAS2016 dataset. (You should contact the authors of [this paper](https://link.springer.com/content/pdf/10.1007/s00521-017-3260-9.pdf).) Download and extract the dataset in `./TextRecognitionModule/Word/data` and run following commands.
+In order to train Text-Recognition Module for English word recognition, first download IAHEW-UCAS2016 dataset. (You should contact the authors of [this paper](https://link.springer.com/content/pdf/10.1007/s00521-017-3260-9.pdf).) Download and extract the dataset in `./TextRecognitionModule/Word/data` and run following commands for data pre-processing.
 ```shell
 cd ./TextRecognitionModule/Word
 python plot_real.py              \\ To convert sequence data into images and it takes a large amount of time
 python create_dataset_real.py    \\ To convert image files into lmdb format
-git clone https://github.com/clovaai/deep-text-recognition-benchmark
+```
+
+We are going to use [TPS-ResNet-BiLSTM-Attn](https://arxiv.org/pdf/1904.01906.pdf) as the model for English word recognition. Clone [this github reopsitory](https://github.com/clovaai/deep-text-recognition-benchmark), generate `./traindata` and `./validdata` folders and put pre-processed IAHEW-UCAS2016 dataset in each corresponding folders. Then, run
+```shell
+python train.py --train_data ./traindata --valid_data ./validdata --select_data / --batch_ratio 1 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --character abcdefghijklmnopqrstuvwxyz
 ```
 
 ---
