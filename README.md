@@ -1,14 +1,15 @@
 ## Air-Text: Air-Writing and Recognition System (ACMMM 2021, Oral)
-
-This is the official PyTorch implementation for our work; Air-Text: Air-Writing and Recognition System.
+This is the official PyTorch implementation for our work; Air-Text: Air-Writing and Recognition System. Here, you can find source codes for model training and brief demo as shown below.
+<p align="center"><img width=70% src="figs/demo.gif"></p>
 
 ---
 ### Overview
-Air-Text is a novel air-writing framework 
+Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. 
+<p align="center"><img width=50% src="figs/overview.png"></p>
 
 ---
 ### Environment Setup
-Using [Anaconda](https://www.anaconda.com/distribution/) is recommended
+Using [Anaconda](https://www.anaconda.com/distribution/) is recommended.
 ```shell
 conda create -n airtext_env python=3.6
 conda activate airtext_env
@@ -17,16 +18,27 @@ pip install opencv-python torchsummary tensorboardX matplotlib lmdb natsort nltk
 ```
 
 ---
-### Datasets & Pre-trained Weights
-Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. 
+### Training Air-Writing Module
+In order to train Air-Writing Module, first download [SCUT-Ego-Gesture dataset](http://www.hcii-lab.net/data/). (Currently, as there is no direct link to download the dataset, you may consider contacting the [authors](https://openaccess.thecvf.com/content_ICCV_2017_workshops/papers/w11/Wu_YOLSE_Egocentric_Fingertip_ICCV_2017_paper.pdf) of this dataset.)
+
+Put the downloaded dataset in `./AirWritingModule/dataset`, type command `cd AirWritingModule` and run `train.py`.
 
 ---
-### Air-Writing Module
-Air-Text is a n
+### Training Text-Recognition Module
+
+#### Single Digit Recognition
+In order to train Text-Recognition Module for single digit recognition, just type command `cd TextRecognitionModule/MNIST` and run `digitmodel.py`. Downloading MNIST dataset and training will be started automatically.
+
+#### English Word Recognition
 
 ---
-### Text-Recognition Module
-Air-Text is a n
+### Pre-trained weights
+Pre-trained weights for above all three models can be downloaded from [here](https://drive.google.com/file/d/1BehjQ5S65Z7kA-_0vJkYcRwy0Z52ACpT/view?usp=sharing). Extract all the files in the root directory of this repository.
+
+---
+### Demo
+First, check you can get a video input by connecting a webcam to your desktop.
+If you want to test single digit recognition, please run `demo_digit.py` in the terminal. Or you can test English word recognition by running `demo_word.py`.
 
 ---
 
@@ -39,92 +51,8 @@ Air-Text is a n
 
 To detect objects of both class-agnostic obstacle class (from Lost and Found) and the set of 19 annotated classes (from Cityscapes), we created a `city_lost` directory by our multi-dataset fusion approach. Our folder structure is as follows:
 
-<details>
-<summary> Click to see the directory structure </summary>
-
-```
-datasets
-└── sceneflow
-│   ├── Driving
-│   │   ├── disparity
-│   │   └── frames_finalpass
-│   ├── FlyingThings3D
-│   │   ├── disparity
-│   │   └── frames_finalpass
-│   └── Monkaa
-│       ├── disparity
-│       └── frames_finalpass
-├── kitti_2012
-│   ├── training
-│   │   ├── colored_0
-│   │   ├── colored_1
-│   │   └── disp_occ
-│   └── testing
-│       ├── colored_0
-│       └── colored_1
-├── kitti_2015
-│   ├── training
-│   │   ├── image_2
-│   │   ├── image_3
-│   │   ├── disp_occ_0
-│   │   └── semantic
-│   └── testing
-│       ├── image_2
-│       └── image_3
-└── cityscapes
-|   ├── leftImg8bit
-|   ├── rightImg8bit
-|   ├── disparity
-|   └── gtFine
-|       ├── train
-|       ├── val
-|       └── test
-└── city_lost
-    ├── leftImg8bit
-    |   ├── train
-    |   |   ├── 01_Hanns_Klemm_Str_45
-    |   |   ├── 03_Hanns_Klemm_Str_19
-    |   |   ├── ...
-    |   |   └── zurich
-    |   └── val
-    |       ├── 02_Hanns_Klemm_Str_44
-    |       ├── 04_Maurener_Weg_8
-    |       ├── ...
-    |       └── munster
-    ├── rightImg8bit
-    |   ├── same structure with leftImg8bit
-    ├── disparity
-    |   ├── same structure with leftImg8bit
-    └── gtFine
-    |   ├── train
-    |   |   ├── aachen
-    |   |   ├── bochum
-    |   |   ├── ...
-    |   |   └── zurich
-    |   └── val
-    |       ├── frankfurt
-    |       ├── lindau
-    |       └── munster
-    └── gtCoarse
-        ├── train
-        |   ├── 01_Hanns_Klemm_Str_45
-        |   ├── 03_Hanns_Klemm_Str_19
-        |   ├── ...
-        |   └── 14_Otto_Lilienthal_Str_24
-        └── val
-            ├── 02_Hanns_Klemm_Str_44
-            ├── 04_Maurener_Weg_8
-            ├── ...
-            └── 15_Rechbergstr_Deckenpfronn
-```
-</details>
-
 ---
 
-### Pre-trained weights
-Download all pretrained models [here](https://drive.google.com/file/d/1U5fl2V5Y7HuUiEIiVFSm5CxFLSC-Xx6n/view?usp=sharing) and place them under the `$RODSNet/ckpt`.
-
----
 
 #### Train and Evaluate
 Detailed commands for training and evaluation are described in `script/train_test_guide.txt`. 
@@ -161,7 +89,7 @@ python sample_test.py --gpu_id 0 \
 
 ### Acknowledgments
 
-- This  work  was  supported  by  the Institute  for  Information  &  Communications  Technology  Promotion  (IITP)grant funded by the Korea government (MSIT) (No.2020-0-00440, Development of Artificial Intelligence Technology that Continuously Improves Itself as the Situation Changes in the Real World).
+- This work was partly supported by Institute for Information & communications Technology Promotion(IITP) grant funded by the Korea government(MSIT) (No.2020-0-00440, Development of artificial intelligence technology that continuously improves itself as the situation changes in the real world) and (No.2020-0-00842, Development of Cloud Robot Intelligence for Continual Adaptation to User Reactions in Real Service Environments).
 
 - Parts of the code are adopted from previous works ([AANet](https://github.com/haofeixu/aanet), and [RFNet](https://github.com/AHupuJR/RFNet)). We appreciate the original authors for their awesome repos. 
 
