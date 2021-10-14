@@ -4,7 +4,7 @@ This is the official PyTorch implementation for our work; **Air-Text: Air-Writin
 
 ---
 ### Overview
-Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. 
+Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. Specifically, the Air-Writing Module takes a sequence of RGB images as input and tracks both the location of fingertips and current hand gesture class frame by frame. Users can easily perform writing operations such as writing or deleting a text by changing hand gestures, and tracked fingertip locations can be stored as a binary image. Then the Text-Recognition Module, which is compatible with any pre-trained recognition models, predicts a written single digit or English word text in the binary image.
 <p align="center"><img width=50% src="figs/overview.png"></p>
 
 ---
