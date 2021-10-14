@@ -4,7 +4,7 @@ This is the official PyTorch implementation for our work; **Air-Text: Air-Writin
 
 ---
 ### Overview
-Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. Specifically, the Air-Writing Module takes a sequence of RGB images as input and tracks both the location of fingertips and current hand gesture class frame by frame. Users can easily perform writing operations such as writing or deleting a text by changing hand gestures, and tracked fingertip locations can be stored as a binary image. Then the Text-Recognition Module, which is compatible with any pre-trained recognition models, predicts a written single digit or English word text in the binary image.
+Air-Text is a novel system to write in the air using fingertips as a pen. Air-Text provides various functionalities by the seamless integration of Air-Writing and Text-Recognition Modules. Specifically, the Air-Writing Module takes a sequence of RGB images as input and tracks both the location of fingertips and current hand gesture class frame by frame. Users can easily perform writing operations such as writing or deleting a text by changing hand gestures, and tracked fingertip locations can be stored as a binary image. Then the Text-Recognition Module, which is compatible with any pre-trained recognition models, predicts a written single digit or English word in the binary image.
 <p align="center"><img width=50% src="figs/overview.png"></p>
 
 ---
@@ -37,7 +37,12 @@ python plot_real.py              \\ To convert sequence data into images and it 
 python create_dataset_real.py    \\ To convert image files into lmdb format
 ```
 
-We are going to use [TPS-ResNet-BiLSTM-Attn](https://arxiv.org/pdf/1904.01906.pdf) as the model for English word recognition. Clone [this github reopsitory](https://github.com/clovaai/deep-text-recognition-benchmark), generate `./traindata` and `./validdata` folders and put pre-processed IAHEW-UCAS2016 dataset in each corresponding folders. Then, run
+We are going to use [TPS-ResNet-BiLSTM-Attn](https://arxiv.org/pdf/1904.01906.pdf) as the model for English word recognition. Clone [this github reopsitory](https://github.com/clovaai/deep-text-recognition-benchmark) as follows. 
+```shell
+git clone https://github.com/clovaai/deep-text-recognition-benchmark dtrb
+cd dtrb
+```
+Generate `./traindata` and `./validdata` folders and put pre-processed IAHEW-UCAS2016 dataset in each corresponding folders. Then, run following command for training the model.
 ```shell
 python train.py --train_data ./traindata --valid_data ./validdata --select_data / --batch_ratio 1 --Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn --character abcdefghijklmnopqrstuvwxyz
 ```
