@@ -1,5 +1,5 @@
 ## Air-Text: Air-Writing and Recognition System (ACMMM 2021, Oral)
-This is the official PyTorch implementation for our work; **Air-Text: Air-Writing and Recognition System**. Here, you can find source codes for model training and brief demo as shown below.
+This is the official PyTorch implementation for our work; [**Air-Text: Air-Writing and Recognition System**](https://dl.acm.org/doi/abs/10.1145/3474085.3475694). Here, you can find source codes for model training and brief demo as shown below.
 <p align="center"><img width=70% src="figs/demo.gif"></p>
 
 ---
@@ -65,11 +65,11 @@ If you want to test single digit recognition, please run `demo_digit.py` in the 
 
 ### Citation
 ```bash
-@article {lee2021airtext,
-    author = {Sun-Kyung Lee, and Jong-Hwan Kim},
-    title = {Air-Text: Air-Writing and Recognition System},
-    year = {2021},
-    doi = {???},
-    URL = {https://doi.org/???},
+@inproceedings{lee2021air,
+  title={Air-Text: Air-Writing and Recognition System},
+  author={Lee, Sun-Kyung and Kim, Jong-Hwan},
+  booktitle={Proceedings of the 29th ACM International Conference on Multimedia},
+  pages={1267--1274},
+  year={2021}
 }
 ```
