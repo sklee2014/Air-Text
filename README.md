@@ -13,7 +13,7 @@ All the experiments were performed on Ubuntu 16.04 and using [Anaconda](https://
 ```shell
 conda create -n airtext_env python=3.6
 conda activate airtext_env
-conda install pytorch==1.5.0 torchivision==0.6.0 cudatoolkit=10.2 -c pytorch
+conda install pytorch==1.5.0 torchvision==0.6.0 cudatoolkit=10.2 -c pytorch
 pip install opencv-python torchsummary tensorboardX matplotlib lmdb natsort nltk
 ```
 
